@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-find-room-form',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindRoomFormComponent implements OnInit {
 
-  constructor() { }
+  readonly URL = "http://localhost:8080";
+  posts: any;
+  constructor(private http:HttpClient) {
+    
+  }
+  //post request
+  getPosts(){
+    this.posts = this.http.get(this.URL+ '/contracts');
+  }
   condition :boolean =false;
   rooms = [ {rooms: 0, adults: 0}];
   onEnter() { 
@@ -15,6 +24,7 @@ export class FindRoomFormComponent implements OnInit {
     this.rooms = this.rooms.concat(rooms2);
   }
   findRoom(){
+    this.getPosts();
     this.condition=true;
   }
   closeResultWindow(){
