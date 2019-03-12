@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FindRoomResultComponent } from './find-room-result.component';
+import { NewContractWindowComponent } from './new-contract-window.component';
 
-describe('FindRoomResultComponent', () => {
-  let component: FindRoomResultComponent;
-  let fixture: ComponentFixture<FindRoomResultComponent>;
+describe('NewContractWindowComponent', () => {
+  let component: NewContractWindowComponent;
+  let fixture: ComponentFixture<NewContractWindowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FindRoomResultComponent ]
+      declarations: [ NewContractWindowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FindRoomResultComponent);
+    fixture = TestBed.createComponent(NewContractWindowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { FindRoomWindowComponent } from './find-room-window/find-room-window.component';
 import { FindRoomFormComponent } from './find-room-form/find-room-form.component';
-import { FindRoomResultComponent } from './find-room-result/find-room-result.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NewContractWindowComponent } from './new-contract-window/new-contract-window.component';
+
+
 
 @NgModule({
   declarations: [
@@ -14,11 +17,12 @@ import { FindRoomResultComponent } from './find-room-result/find-room-result.com
     NavComponent,
     FindRoomWindowComponent,
     FindRoomFormComponent,
-    FindRoomResultComponent
+    NewContractWindowComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
