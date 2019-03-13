@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class FindRoomFormComponent implements OnInit {
 
-  requirement = new Requirement(new Date,4,[4,4]);
+  requirement = new Requirement(new Date,0,[0],[0]);
   readonly URL = "http://localhost:8080";
   posts: any;
   constructor(private http:HttpClient) {
