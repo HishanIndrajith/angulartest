@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { Requirement } from '../requirement';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 @Component({
   selector: 'app-find-room-form',
   templateUrl: './find-room-form.component.html',
@@ -8,6 +14,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class FindRoomFormComponent implements OnInit {
 
+  requirement = new Requirement(new Date,4,[4,4]);
   readonly URL = "http://localhost:8080";
   posts: any;
   constructor(private http:HttpClient) {
@@ -15,7 +22,7 @@ export class FindRoomFormComponent implements OnInit {
   }
   //post request
   getPosts(){
-    this.posts = this.http.get(this.URL+ '/contracts');
+    this.posts = this.http.post<Requirement>(this.URL+"/find",this.requirement,httpOptions);
   }
   condition :boolean =false;
   rooms = [ {rooms: 0, adults: 0}];

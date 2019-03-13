@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Hilton colombo",
+        "type": "Standard",
+        "price": 29500.00
+    },
+    {
+        "name": "Galle Face colombo",
+        "type": "Sea side",
+        "price": 35000.00
+    },
+    {
+        "name": "Amaya Kandy",
+        "type": "Mount side",
+        "price": 20000.00
+    }
+]

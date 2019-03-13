@@ -6,19 +6,15 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputEmail4">Check in Date</label>
-              <input type="date" class="form-control" id="checkindate" placeholder="Check in Date" onkeypress="if (event.keyCode == 13) { return false;}">
+              <input type="date" class="form-control" id="checkindate" placeholder="Check in Date" onkeypress="if (event.keyCode == 13) { return false;}" [(ngModel)]="requirement.checkInDate">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">No of Nights</label>
-              <input type="number" class="form-control" id="inputPassword4" placeholder="No of Nights" onkeypress="if (event.keyCode == 13) { return false;}">
+              <input type="number" class="form-control" id="inputPassword4" placeholder="No of Nights" onkeypress="if (event.keyCode == 13) { return false;}" [(ngModel)]="requirement.noOfnights">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Address" onkeypress="if (event.keyCode == 13) { return false;}">
-          </div>
-          <div class="form-group">
-            <label for="inputAddress2">Address 2</label>
+            <label for="inputAddress2">Rooms Description</label>
             <table class="table table-bordered table-hover" id="tab_logic">
               <thead>
                 <tr>           
@@ -27,9 +23,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of rooms">           
+                <tr *ngFor="let item of rooms; index as i">           
                   <td><input type="number" placeholder='0' class="form-control" onkeypress="if (event.keyCode == 13) { return false;}"/></td>
-                  <td><input (keyup.enter)="onEnter()" type="number"  placeholder='0' class="form-control" onkeypress="if (event.keyCode == 13) { return false;}"/></td>
+                  <td><input (keyup.enter)="onEnter()" type="number"  placeholder='0' class="form-control" onkeypress="if (event.keyCode == 13) { return false; }"  [(ngModel)]="requirement.rooms[i]"/></td>
                 </tr>
               </tbody>
             </table>
@@ -41,7 +37,9 @@
       <!-- <div class="card-footer">Footer</div> -->
     </div>
   </div>
-
+  <!-- <div>
+    <tr>{{requirement | json}}</tr>
+  </div> -->
   <div class="container col-lg-5 col-xl-5 col-md-5 col-sm-5 float-right" *ngIf="condition">
   <div class="card">
     <div class="card-header d-flex justify-content-between">Results <button  (click)="closeResultWindow()" class="btn btn-sm btn-danger ">Close</button></div>
@@ -55,19 +53,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Hilton Colombo</td>
-                  <td>Sea side</td>
-                  <td>24000</td>
+                <tr *ngFor ="let d of posts | async;">
+                  <td>{{d.name}}</td>
+                  <td>{{d.type}}</td>
+                  <td>{{d.price}}</td>
                 </tr>
               </tbody>
             </table>
     </div>
-
-    <div *ngFor = "let post of posts | async">
-      {{post | json}}
-    </div>
-
-
   </div>
 </div>

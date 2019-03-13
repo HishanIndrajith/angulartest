@@ -8,8 +8,7 @@ import { FindRoomWindowComponent } from './find-room-window/find-room-window.com
 import { FindRoomFormComponent } from './find-room-form/find-room-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewContractWindowComponent } from './new-contract-window/new-contract-window.component';
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,8 @@ import { NewContractWindowComponent } from './new-contract-window/new-contract-w
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
