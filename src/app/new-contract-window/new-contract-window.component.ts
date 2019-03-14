@@ -3,6 +3,8 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Contract } from '../contract';
 import { RoomType } from '../room-type';
 import { Hotel } from '../hotel';
+import { empty } from 'rxjs';
+import { error } from 'protractor';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,11 +28,14 @@ export class NewContractWindowComponent implements OnInit {
 
   constructor(private http : HttpClient) { }
   
-  rooms = [ {rooms: 0, adults: 0}];
 
   //post request
   getPosts(){
-    this.posts = this.http.post<Contract>(this.URL+"/contracts",this.contract,httpOptions).subscribe(response => console.log(response));
+    this.posts = this.http.post<Contract>(this.URL+"/contracts",this.contract,httpOptions)
+    .subscribe(
+      err => this.onSuccess(),
+      () => this.onError(),
+    );
   }
 
   types = [ {typeName: "", price: 0.00,noOfRooms: 0,maxadults:0 }];
@@ -46,9 +51,28 @@ export class NewContractWindowComponent implements OnInit {
       this.types.splice(i, 1);
     }
   }
+  isError :boolean=false;
+  isSuccess :boolean=false;
+  onError(){
+    console.log("Error");
+    this.isSuccess=false;
+    this.isError=true;
+  }
+  onSuccess(){
+    console.log("Success");
+    this.isError=false;
+    this.isSuccess=true;
+  }
 
   saveContract(){
     this.getPosts();
+    //making the forms empty
+    this.contract.startDate = new Date;
+    this.contract.endDate= new Date;
+    this.contract.hotel.hotelName="";
+    this.contract.hotel.address="";
+    this.types = [ {typeName: "", price: 0.00,noOfRooms: 0,maxadults:0 }];
+    this.contract.roomTypes = [ {typeName: "", price: 0.00,noOfRooms: 0,availableRooms : 0, maxadults:0 }];
   }
   
 
