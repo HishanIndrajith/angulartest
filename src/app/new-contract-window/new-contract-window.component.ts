@@ -1,5 +1,14 @@
-import { Component, OnInit,  EventEmitter, Input, Output } from '@angular/core';
-import { print } from 'util';
+import { Component, OnInit} from '@angular/core';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
+import { Contract } from '../contract';
+import { RoomType } from '../room-type';
+import { Hotel } from '../hotel';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 @Component({
   selector: 'app-new-contract-window',
@@ -8,16 +17,30 @@ import { print } from 'util';
   
 })
 export class NewContractWindowComponent implements OnInit {
+  hotel = new Hotel("","");
+  room_type = new RoomType("",0.00,0,0,0);
+  contract = new Contract(new Date,new Date,[this.room_type],this.hotel);
+  readonly URL = "http://localhost:8080";
+  posts: any;
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
   
   rooms = [ {rooms: 0, adults: 0}];
+
+  //post request
+  getPosts(){
+    console.log("begin to send");
+    this.posts = this.http.post<Contract>(this.URL+"/contracts",this.contract,httpOptions).subscribe();
+  }
+
+  types = [ {typeName: "", price: 0.00,noOfRooms: 0,maxadults:0 }];
   onEnter() { 
-    //document.getElementById('addr1').innerHTML = "<td>1</td><td><input type=\"text\" name='name0'  placeholder='Name' class=\"form-control\"/></td><td><input (keyup.enter)=\"onEnter()\" type=\"text\" name='mail0' placeholder='Mail' class=\"form-control\"/></td>"
-    //let myContainer = document.getElementById('addr1') as HTMLInputElement;
-    //myContainer.value = "<td>1</td><td><input type=\"text\" name='name0'  placeholder='Name' class=\"form-control\"/></td><td><input (keyup.enter)=\"onEnter()\" type=\"text\" name='mail0' placeholder='Mail' class=\"form-control\"/></td>";
-    var rooms2 = [ {rooms: 0, adults: 0}];
-    this.rooms = this.rooms.concat(rooms2);
+    var types2 = [ {typeName: "", price: 0.00,noOfRooms: 0,maxadults:0 }];
+    this.types = this.types.concat(types2);
+  }
+
+  saveContract(){
+    this.getPosts();
   }
   
 
