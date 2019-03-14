@@ -24,9 +24,6 @@ export class NewContractWindowComponent implements OnInit {
   readonly URL = "http://localhost:8080";
   posts: any;
 
-  isError:boolean=false;
-  isSucess:boolean=false;
-
   constructor(private http : HttpClient) { }
   
   rooms = [ {rooms: 0, adults: 0}];
