@@ -30,6 +30,13 @@ export class FindRoomFormComponent implements OnInit {
     var rooms2 = [ {rooms: 0, adults: 0}];
     this.rooms = this.rooms.concat(rooms2);
   }
+  clearRow(i : number){
+    if (this.rooms.length>1) {
+      this.requirement.rooms.splice(i, 1);
+      this.requirement.persons.splice(i, 1);
+      this.rooms.splice(i, 1);
+    }
+  }
   findRoom(){
     this.getPosts();
     this.condition=true;

@@ -26,9 +26,11 @@
                 <tr *ngFor="let item of rooms; index as i">           
                   <td><input type="number" class="form-control"  [(ngModel)]="requirement.rooms[i]"/></td>
                   <td><input (keyup.enter)="onEnter()" type="number" class="form-control"   [(ngModel)]="requirement.persons[i]"/></td>
+                  <td><button (click)="clearRow(i)" class="btn btn-danger">X</button></td>
                 </tr>
               </tbody>
             </table>
+            <pre>Note: To add more rooms to search, hit the ENTER button <br>when the cursor is in the 'No of Persons' box.</pre>
           </div>
           <button  (click)="findRoom()" class="btn btn-primary">Find Rooms</button>
         <!-- </form> -->
